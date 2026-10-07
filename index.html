@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudentToolBox - Free Student Tools</title>
 
+<style>
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#f5f7fb;
+  color:#222;
+}
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+.hero{
+  background:white;
+  text-align:center;
+  padding:40px 15px;
+}
+.hero h1{font-size:34px;}
+.search{
+  width:90%;
+  max-width:450px;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+h2{margin-top:35px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 3px 12px #ddd;
+}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  box-sizing:border-box;
+  border:1px solid #ddd;
+  border-radius:6px;
+}
+button{
+  background:#2563eb;
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:6px;
+}
+.result{
+  margin-top:10px;
+  font-weight:bold;
+}
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>StudentToolBox 🚀</h1>
+<p>Free Tools for Students</p>
+</header>
+
+<section class="hero">
+<h1>Free Student Tools</h1>
+<p>Calculator • Study • Engineering • Coding Tools</p>
+
+<input class="search"
+placeholder="Search tools..."
+onkeyup="searchTools(this.value)">
+</section>
+
+<div class="container">
+
+<h2>🧮 Calculator Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Percentage Calculator</h3>
+
+<input id="marks" type="number" placeholder="Your marks">
+<input id="total" type="number" placeholder="Total marks">
+
+<button onclick="percentage()">Calculate</button>
+
+<div class="result" id="percentageResult"></div>
+</div>
+
+<div class="card tool">
+<h3>CGPA Calculator</h3>
+
+<input id="cgpa" type="number" step="0.01"
+placeholder="Enter CGPA">
+
+<button onclick="cgpaCalculate()">Calculate</button>
+
+<div class="result" id="cgpaResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Average Calculator</h3>
+
+<input id="numbers"
+placeholder="Example: 10,20,30,40">
+
+<button onclick="average()">Calculate</button>
+
+<div class="result" id="averageResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Marks Calculator</h3>
+
+<input id="m1" type="number" placeholder="Subject 1">
+<input id="m2" type="number" placeholder="Subject 2">
+<input id="m3" type="number" placeholder="Subject 3">
+
+<button onclick="marksCalculate()">Calculate</button>
+
+<div class="result" id="marksResult"></div>
+</div>
+
+</div>
+
+
+<h2>🔢 Number System Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Binary → Decimal</h3>
+
+<input id="binary" placeholder="Example: 1010">
+
+<button onclick="binaryDecimal()">Convert</button>
+
+<div class="result" id="binaryResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Decimal → Binary</h3>
+
+<input id="decimal" type="number"
+placeholder="Example: 10">
+
+<button onclick="decimalBinary()">Convert</button>
+
+<div class="result" id="decimalResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Binary → Octal</h3>
+
+<input id="binaryOctalInput"
+placeholder="Example: 1010">
+
+<button onclick="binaryOctal()">Convert</button>
+
+<div class="result" id="octalResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Binary → Hexadecimal</h3>
+
+<input id="binaryHexInput"
+placeholder="Example: 1010">
+
+<button onclick="binaryHex()">Convert</button>
+
+<div class="result" id="hexResult"></div>
+</div>
+
+</div>
+
+
+<h2>📝 Text Tools</h2>
+
+<div class
