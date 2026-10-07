@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudentToolBox - Free Student Tools</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#f5f7fb;
+  color:#222;
+}
+
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:28px 10px;
+}
+
+header h1{
+  margin:0;
+  font-size:38px;
+}
+
+.hero{
+  background:white;
+  text-align:center;
+  padding:45px 15px;
+}
+
+.hero h2{
+  font-size:38px;
+  margin:10px 0;
+}
+
+.search{
+  width:90%;
+  max-width:500px;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  margin-top:15px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+h2{
+  margin-top:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #ddd;
+}
+
+.card h3{
+  margin-top:0;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:11px;
+  margin:6px 0;
+  border:1px solid #ddd;
+  border-radius:7px;
+  font-size:15px;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  border:0;
+  padding:11px 16px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:5px;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.result{
+  margin-top:12px;
+  font-weight:bold;
+  color:#111827;
+}
+
+.hidden{
+  display:none;
+}
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:40px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:30px}
+  .hero h2{font-size:30px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>StudentToolBox 🚀</h1>
+<p>Free Tools for Students</p>
+</header>
+
+<section class="hero">
+<h2>Free Student Tools</h2>
+<p>Calculator • Study • Engineering • Coding Tools</p>
+
+<input
+class="search"
+placeholder="Search tools..."
+onkeyup="searchTools(this.value)">
+</section>
+
+<div class="container">
+
+<!-- CALCULATOR TOOLS -->
+<h2>🧮 Calculator Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Percentage Calculator</h3>
+<input id="marks" type="number" placeholder="Your marks">
+<input id="total" type="number" placeholder="Total marks">
+<button onclick="percentage()">Calculate</button>
+<div class="result" id="percentageResult"></div>
+</div>
+
+<div class="card tool">
+<h3>CGPA Calculator</h3>
+<input id="cgpa" type="number" step="0.01" placeholder="Enter CGPA">
+<button onclick="cgpaCalculate()">Calculate</button>
+<div class="result" id="cgpaResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Average Calculator</h3>
+<input id="numbers" placeholder="10,20,30,40">
+<button onclick="average()">Calculate</button>
+<div class="result" id="averageResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Marks Calculator</h3>
+<input id="m1" type="number" placeholder="Subject 1">
+<input id="m2" type="number" placeholder="Subject 2">
+<input id="m3" type="number" placeholder="Subject 3">
+<button onclick="marksCalculate()">Calculate</button>
+<div class="result" id="marksResult"></div>
+</div>
+
+</div>
+
+<!-- NUMBER SYSTEM -->
+<h2>🔢 Number System Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Binary → Decimal</h3>
+<input id="binary" placeholder="1010">
+<button onclick="binaryDecimal()">Convert</button>
+<div class="result" id="binaryResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Decimal → Binary</h3>
+<input id="decimal" type="number" placeholder="10">
+<button onclick="decimalBinary()">Convert</button>
+<div class="result" id="decimalResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Binary → Octal</h3>
+<input id="binaryOctalInput" placeholder="1010">
+<button onclick="binaryOctal()">Convert</button>
+<div class="result" id="octalResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Binary → Hexadecimal</h3>
+<input id="binaryHexInput" placeholder="1010">
+<button onclick="binaryHex()">Convert</button>
+<div class="result" id="hexResult"></div>
+</div>
+
+</div>
+
+<!-- TEXT TOOLS -->
+<h2>📝 Text Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Word Counter</h3>
+<textarea id="textInput" rows="5" placeholder="Type or paste text"></textarea>
+<button onclick="wordCount()">Count Words</button>
+<div class="result" id="wordResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Character Counter</h3>
+<textarea id="charInput" rows="5" placeholder="Type text"></textarea>
+<button onclick="charCount()">Count Characters</button>
+<div class="result" id="charResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Uppercase Converter</h3>
+<textarea id="upperInput" rows="4" placeholder="Enter text"></textarea>
+<button onclick="toUpper()">Convert</button>
+<div class="result" id="upperResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Lowercase Converter</h3>
+<textarea id="lowerInput" rows="4" placeholder="Enter text"></textarea>
+<button onclick="toLower()">Convert</button>
+<div class="result" id="lowerResult"></div>
+</div>
+
+</div>
+
+<!-- ENGINEERING TOOLS -->
+<h2>⚙️ Engineering Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Ohm's Law Calculator</h3>
+<input id="voltage" type="number" placeholder="Voltage (V)">
+<input id="resistance" type="number" placeholder="Resistance (Ω)">
+<button onclick="ohmLaw()">Calculate Current</button>
+<div class="result" id="ohmResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Power Calculator</h3>
+<input id="powerV" type="number" placeholder="Voltage (V)">
+<input id="powerI" type="number" placeholder="Current (A)">
+<button onclick="powerCalc()">Calculate Power</button>
+<div class="result" id="powerResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Speed Calculator</h3>
+<input id="distance" type="number" placeholder="Distance">
+<input id="time" type="number" placeholder="Time">
+<button onclick="speedCalc()">Calculate</button>
+<div class="result" id="speedResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Density Calculator</h3>
+<input id="mass" type="number" placeholder="Mass">
+<input id="volume" type="number" placeholder="Volume">
+<button onclick="densityCalc()">Calculate</button>
+<div class="result" id="densityResult"></div>
+</div>
+
+</div>
+
+<!-- UNIT TOOLS -->
+<h2>📏 Unit Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>KM → Miles</h3>
+<input id="km" type="number" placeholder="Kilometers">
+<button onclick="kmMiles()">Convert</button>
+<div class="result" id="kmResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Miles → KM</h3>
+<input id="miles" type="number" placeholder="Miles">
+<button onclick="milesKm()">Convert</button>
+<div class="result" id="milesResult"></div>
+</div>
+
+<div class="card tool">
+<h3>KG → Pounds</h3>
+<input id="kg" type="number" placeholder="Kilograms">
+<button onclick="kgPound()">Convert</button>
+<div class="result" id="kgResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Celsius → Fahrenheit</h3>
+<input id="celsius" type="number" placeholder="Celsius">
+<button onclick="celsiusF()">Convert</button>
+<div class="result" id="celsiusResult"></div>
+</div>
+
+</div>
+
+<!-- STUDY TOOLS -->
+<h2>🎓 Study Tools</h2>
+
+<div class="grid">
+
+<div class="card tool">
+<h3>Simple Interest</h3>
+<input id="principal" type="number" placeholder="Principal">
+<input id="rate" type="number" placeholder="Rate %">
+<input id="years" type="number" placeholder="Years">
+<button onclick="simpleInterest()">Calculate</button>
+<div class="result" id="interestResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Grade Calculator</h3>
+<input id="gradeMarks" type="number" placeholder="Enter percentage">
+<button onclick="gradeCalc()">Calculate Grade</button>
+<div class="result" id="gradeResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Discount Calculator</h3>
+<input id="price" type="number" placeholder="Original price">
+<input id="discount" type="number" placeholder="Discount %">
+<button onclick="discountCalc()">Calculate</button>
+<div class="result" id="discountResult"></div>
+</div>
+
+<div class="card tool">
+<h3>Age Calculator</h3>
+<input id="birthYear" type="number" placeholder="Birth year e.g. 2005">
+<button onclick="ageCalc()">Calculate Age</button>
+<div class="result" id="ageResult"></div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<p>© 2026 StudentToolBox 🚀</p>
+<p>Free Tools for Students</p>
+</footer>
+
+
+<script>
+
+/* SEARCH */
+function searchTools(value){
+  value=value.toLowerCase();
+
+  document.querySelectorAll(".tool").forEach(function(card){
+    let text=card.innerText.toLowerCase();
+
+    if(text.includes(value)){
+      card.classList.remove("hidden");
+    }else{
+      card.classList.add("hidden");
+    }
+  });
+}
+
+
+/* PERCENTAGE */
+function percentage(){
+  let marks=parseFloat(document.getElementById("marks").value);
+  let total=parseFloat(document.getElementById("total").value);
+
+  if(isNaN(marks)||isNaN(total)||total<=0){
+    document.getElementById("percentageResult").innerText="Please enter valid marks.";
+    return;
+  }
+
+  let result=(marks/total)*100;
+
+  document.getElementById("percentageResult").innerText=
+  "Percentage = "+result.toFixed(2)+"%";
+}
+
+
+/* CGPA */
+function cgpaCalculate(){
+  let cgpa=parseFloat(document.getElementById("cgpa").value);
+
+  if(isNaN(cgpa)){
+    document.getElementById("cgpaResult").innerText="Enter CGPA.";
+    return;
+  }
+
+  document.getElementById("cgpaResult").innerText=
+  "Approx Percentage = "+(cgpa*9.5).toFixed(2)+"%";
+}
+
+
+/* AVERAGE */
+function average(){
+  let values=document.getElementById("numbers").value
+    .split(",")
+    .map(Number)
+    .filter(n=>!isNaN(n));
+
+  if(values.length===0){
+    document.getElementById("averageResult").innerText="Enter numbers.";
+    return;
+  }
+
+  let sum=values.reduce((a,b)=>a+b,0);
+
+  document.getElementById("averageResult").innerText=
+  "Average = "+(sum/values.length).toFixed(2);
+}
+
+
+/* MARKS */
+function marksCalculate(){
+  let a=parseFloat(document.getElementById("m1").value)||0;
+  let b=parseFloat(document.getElementById("m2").value)||0;
+  let c=parseFloat(document.getElementById("m3").value)||0;
+
+  let total=a+b+c;
+  let avg=total/3;
+
+  document.getElementById("marksResult").innerText=
+  "Total = "+total+" | Average = "+avg.toFixed(2);
+}
+
+
+/* BINARY → DECIMAL */
+function binaryDecimal(){
+  let value=document.getElementById("binary").value.trim();
+
+  if(!/^[01]+$/.test(value)){
+    document.getElementById("binaryResult").innerText="Enter valid binary.";
+    return;
+  }
+
+  document.getElementById("binaryResult").innerText=
+  "Decimal = "+parseInt(value,2);
+}
+
+
+/* DECIMAL → BINARY */
+function decimalBinary(){
+  let value=parseInt(document.getElementById("decimal").value);
+
+  if(isNaN(value)||value<0){
+    document.getElementById("decimalResult").innerText="Enter valid number.";
+    return;
+  }
+
+  document.getElementById("decimalResult").innerText=
+  "Binary = "+value.toString(2);
+}
+
+
+/* BINARY → OCTAL */
+function binaryOctal(){
+  let value=document.getElementById("binaryOctalInput").value.trim();
+
+  if(!/^[01]+$/.test(value)){
+    document.getElementById("octalResult").innerText="Enter valid binary.";
+    return;
+  }
+
+  document.getElementById("octalResult").innerText=
+  "Octal = "+parseInt(value,2).toString(8);
+}
+
+
+/* BINARY → HEX */
+function binaryHex(){
+  let value=document.getElementById("binaryHexInput").value.trim();
+
+  if(!/^[01]+$/.test(value)){
+    document.getElementById("hexResult").innerText="Enter valid binary.";
+    return;
+  }
+
+  document.getElementById("hexResult").innerText=
+  "Hexadecimal = "+parseInt(value,2).toString(16).toUpperCase();
+}
+
+
+/* WORD COUNT */
+function wordCount(){
+  let text=document.getElementById("textInput").value.trim();
+
+  let count=text?text.split(/\s+/).length:0;
+
+  document.getElementById("wordResult").innerText=
+  "Words = "+count;
+}
+
+
+/* CHARACTER COUNT */
+function charCount(){
+  let text=document.getElementById("charInput").value;
+
+  document.getElementById("charResult").innerText=
+  "Characters = "+text.length;
+}
+
+
+/* UPPERCASE */
+function toUpper(){
+  let text=document.getElementById("upperInput").value;
+
+  document.getElementById("upperResult").innerText=
+  text.toUpperCase();
+}
+
+
+/* LOWERCASE */
+function toLower(){
+  let text=document.getElementById("lowerInput").value;
+
+  document.getElementById("lowerResult").innerText=
+  text.toLowerCase();
+}
+
+
+/* OHM'S LAW */
+function ohmLaw(){
+  let v=parseFloat(document.getElementById("voltage").value);
+  let r=parseFloat(document.getElementById("resistance").value);
+
+  if(isNaN(v)||isNaN(r)||r===0){
+    document.getElementById("ohmResult").innerText="Enter valid values.";
+    return;
+  }
+
+  document.getElementById("ohmResult").innerText=
+  "Current = "+(v/r).toFixed(2)+" A";
+}
+
+
+/* POWER */
+function powerCalc(){
+  let v=parseFloat(document.getElementById("powerV").value);
+  let i=parseFloat(document.getElementById("powerI").value);
+
+  if(isNaN(v)||isNaN(i)){
+    document.getElementById("powerResult").innerText="Enter valid values.";
+    return;
+  }
+
+  document.getElementById("powerResult").innerText=
+  "Power = "+(v*i).toFixed(2)+" W";
+}
+
+
+/* SPEED */
+function speedCalc(){
+  let d=parseFloat(document.getElementById("distance").value);
+  let t=parseFloat(document.getElementById("time").value);
+
+  if(isNaN(d)||isNaN(t)||t===0){
+    document.getElementById("speedResult").innerText="Enter valid values.";
+    return;
+  }
+
+  document.getElementById("speedResult").innerText=
+  "Speed = "+(d/t).toFixed(2);
+}
+
+
+/* DENSITY */
+function densityCalc(){
+  let m=parseFloat(document.getElementById("mass").value);
+  let v=parseFloat(document.getElementById("volume").value);
+
+  if(isNaN(m)||isNaN(v)||v===0){
+    document.getElementById("densityResult").innerText="Enter valid values.";
+    return;
+  }
+
+  document.getElementById("densityResult").innerText=
+  "Density = "+(m/v).toFixed(2);
+}
+
+
+/* KM → MILES */
+function kmMiles(){
+  let km=parseFloat(document.getElementById("km").value);
+
+  if(isNaN(km)){
+    document.getElementById("kmResult").innerText="Enter kilometers.";
+    return;
+  }
+
+  document.getElementById("kmResult").innerText=
+  "Miles = "+(km*0.621371).toFixed(3);
+}
+
+
+/* MILES → KM */
+function milesKm(){
+  let miles=parseFloat(document.getElementById("miles").value);
+
+  if(isNaN(miles)){
+    document.getElementById("milesResult").innerText="Enter miles.";
+    return;
+  }
+
+  document.getElementById("milesResult").innerText=
+  "Kilometers = "+(miles*1.60934).toFixed(3);
+}
+
+
+/* KG → POUND */
+function kgPound(){
+  let kg=parseFloat(document.getElementById("kg").value);
+
+  if(isNaN(kg)){
+    document.getElementById("kgResult").innerText="Enter kilograms.";
+    return;
+  }
+
+  document.getElementById("kgResult").innerText=
+  "Pounds = "+(kg*2.20462).toFixed(2);
+}
+
+
+/* CELSIUS → FAHRENHEIT */
+function celsiusF(){
+  let c=parseFloat(document.getElementById("celsius").value);
+
+  if(isNaN(c)){
+    document.getElementById("celsiusResult").innerText="Enter Celsius.";
+    return;
+  }
+
+  document.getElementById("celsiusResult").innerText=
+  "Fahrenheit = "+((c*9/5)+32).toFixed(2)+" °F";
+}
+
+
+/* SIMPLE INTEREST */
+function simpleInterest(){
+  let p=parseFloat(document.getElementById("principal").value);
+  let r=parseFloat(document.getElementById("rate").value);
+  let t=parseFloat(document.getElementById("years").value);
+
+  if(isNaN(p)||isNaN(r)||isNaN(t)){
+    document.getElementById("interestResult").innerText="Enter all values.";
+    return;
+  }
+
+  let si=(p*r*t)/100;
+  let total=p+si;
+
+  document.getElementById("interestResult").innerText=
+  "Interest = "+si.toFixed(2)+" | Total = "+total.toFixed(2);
+}
+
+
+/* GRADE */
+function gradeCalc(){
+  let marks=parseFloat(document.getElementById("gradeMarks").value);
+
+  if(isNaN(marks)){
+    document.getElementById("gradeResult").innerText="Enter percentage.";
+    return;
+  }
+
+  let grade;
+
+  if(marks>=90) grade="A+";
+  else if(marks>=80) grade="A";
+  else if(marks>=70) grade="B";
+  else if(marks>=60) grade="C";
+  else if(marks>=50) grade="D";
+  else grade="F";
+
+  document.getElementById("gradeResult").innerText=
+  "Grade = "+grade;
+}
+
+
+/* DISCOUNT */
+function discountCalc(){
+  let price=parseFloat(document.getElementById("price").value);
+  let discount=parseFloat(document.getElementById("discount").value);
+
+  if(isNaN(price)||isNaN(discount)){
+    document.getElementById("discountResult").innerText="Enter valid values.";
+    return;
+  }
+
+  let saved=price*discount/100;
+  let finalPrice=price-saved;
+
+  document.getElementById("discountResult").innerText=
+  "You save = ₹"+saved.toFixed(2)+
+  " | Final price = ₹"+finalPrice.toFixed(2);
+}
+
+
+/* AGE */
+function ageCalc(){
+  let birth=parseInt(document.getElementById("birthYear").value);
+  let current=new Date().getFullYear();
+
+  if(isNaN(birth)||birth>current||birth<1900){
+    document.getElementById("ageResult").innerText="Enter valid birth year.";
+    return;
+  }
+
+  document.getElementById("ageResult").innerText=
+  "Approx Age = "+(current-birth)+" years";
+}
+
+</script>
+
+</body>
+</html>
